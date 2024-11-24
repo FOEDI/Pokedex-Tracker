@@ -6,15 +6,23 @@ import MyPokemonPage from "@/components/pages/MyPokemonPage";
 
 const App = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <div className="min-h-screen bg-background">
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/my-pokemon" element={<MyPokemonPage />} />
+          <Route path="*" element={
+            <div className="container mx-auto p-4 text-center">
+              <h1 className="text-2xl font-bold mb-4">Page non trouvée</h1>
+              <Link to="/" className="text-primary hover:underline">
+                Retourner à l'accueil
+              </Link>
+            </div>
+          } />
         </Routes>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 };
 
