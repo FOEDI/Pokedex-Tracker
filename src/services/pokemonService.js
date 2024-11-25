@@ -45,365 +45,6 @@ const getTypeTranslation = (englishType) => {
   return types[englishType.toLowerCase()] || englishType;
 };
 
-const locationTranslations = {
-  // Kanto (Gen 1, 3)
-  "route": "Route",
-  "kanto-route": "Route",
-  "viridian-city": "Jadielle",
-  "pewter-city": "Argenta",
-  "cerulean-city": "Azuria",
-  "vermilion-city": "Carmin sur Mer",
-  "lavender-town": "Lavande",
-  "celadon-city": "Céladopole",
-  "fuchsia-city": "Parmanie",
-  "saffron-city": "Safrania",
-  "cinnabar-island": "Cramois'Île",
-  "indigo-plateau": "Plateau Indigo",
-  "viridian-forest": "Forêt de Jade",
-  "mt-moon": "Mont Sélénite",
-  "rock-tunnel": "Grotte",
-  "power-plant": "Centrale",
-  "pokemon-tower": "Tour Pokémon",
-  "pokemon-mansion": "Manoir Pokémon",
-  "safari-zone": "Parc Safari",
-  "seafoam-islands": "Îles Écumes",
-  "victory-road": "Route Victoire",
-  "cerulean-cave": "Grotte Azurée",
-  "digletts-cave": "Grotte Taupiqueur",
-  "mt-silver": "Mont Argenté",
-
-  // Johto (Gen 2, 4)
-  "johto-route": "Route",
-  "new-bark-town": "Bourg Geon",
-  "cherrygrove-city": "Ville Griotte",
-  "violet-city": "Mauville",
-  "azalea-town": "Écorcia",
-  "goldenrod-city": "Doublonville",
-  "ecruteak-city": "Rosalia",
-  "olivine-city": "Oliville",
-  "cianwood-city": "Irisia",
-  "mahogany-town": "Acajou",
-  "blackthorn-city": "Ébènelle",
-  "sprout-tower": "Tour Chetiflor",
-  "ruins-of-alph": "Ruines Alpha",
-  "union-cave": "Caves Jumelles",
-  "slowpoke-well": "Puits Ramoloss",
-  "ilex-forest": "Bois aux Chênes",
-  "national-park": "Parc Naturel",
-  "burned-tower": "Tour Cendrée",
-  "tin-tower": "Tour Carillon",
-  "whirl-islands": "Îles Tourbillon",
-  "mt-mortar": "Mont Creuset",
-  "ice-path": "Route de Glace",
-  "dark-cave": "Antre Noir",
-  "dragons-den": "Antre du Dragon",
-
-  // Hoenn (Gen 3, 6)
-  "hoenn-route": "Route",
-  "littleroot-town": "Bourg-en-Vol",
-  "oldale-town": "Rosyères",
-  "petalburg-city": "Clémenti-Ville",
-  "rustboro-city": "Mérouville",
-  "dewford-town": "Cimetronelle",
-  "slateport-city": "Poivressel",
-  "mauville-city": "Lavandia",
-  "verdanturf-town": "Vergazon",
-  "fallarbor-town": "Autéquia",
-  "lavaridge-town": "Cellapolis",
-  "fortree-city": "Cimetronelle",
-  "lilycove-city": "Nénucrique",
-  "mossdeep-city": "Algatia",
-  "sootopolis-city": "Atalanopolis",
-  "ever-grande-city": "Éternara",
-  "petalburg-woods": "Bois Clémenti",
-  "rusturf-tunnel": "Tunnel Mérazon",
-  "granite-cave": "Grotte Granite",
-  "mt-chimney": "Mont Chimnée",
-  "meteor-falls": "Site Météore",
-  "mt-pyre": "Mont Mémoria",
-  "shoal-cave": "Grotte Tréfonds",
-  "seafloor-cavern": "Caverne Fondmer",
-  "sky-pillar": "Pilier Céleste",
-  "cave-of-origin": "Grotte Origine",
-
-  // Sinnoh (Gen 4)
-  "sinnoh-route": "Route",
-  "twinleaf-town": "Bonaugure",
-  "sandgem-town": "Littorella",
-  "jubilife-city": "Jubilation",
-  "oreburgh-city": "Charbourg",
-  "floaroma-town": "Floraville",
-  "eterna-city": "Vestigion",
-  "hearthome-city": "Unionpolis",
-  "solaceon-town": "Bonville",
-  "veilstone-city": "Voilaroc",
-  "pastoria-city": "Rivamar",
-  "celestic-town": "Célestia",
-  "canalave-city": "Joliberges",
-  "snowpoint-city": "Frimapic",
-  "sunyshore-city": "Rivamar",
-  "oreburgh-gate": "Porte Charbourg",
-  "valley-windworks": "Éolienne",
-  "eterna-forest": "Forêt Vestigion",
-  "fuego-ironworks": "Forge Fuego",
-  "mt-coronet": "Mont Couronné",
-  "great-marsh": "Grand Marais",
-  "solaceon-ruins": "Ruines Bonville",
-  "iron-island": "Île de Fer",
-  "old-chateau": "Vieux Château",
-  "snowpoint-temple": "Temple Frimapic",
-  "stark-mountain": "Mont Abrupt",
-  "sendoff-spring": "Source Adieu",
-  "turnback-cave": "Grotte Retour",
-  "spear-pillar": "Pilier Lancé",
-  "distortion-world": "Monde Distorsion",
-
-  // Unys (Gen 5)
-  "unova-route": "Route",
-  "nuvema-town": "Renouet",
-  "accumula-town": "Arabelle",
-  "striaton-city": "Ogoesse",
-  "nacrene-city": "Maillard",
-  "castelia-city": "Volucité",
-  "nimbasa-city": "Méanville",
-  "driftveil-city": "Volucité",
-  "mistralton-city": "Parsemille",
-  "icirrus-city": "Flocombe",
-  "opelucid-city": "Janusia",
-  "dreamyard": "Vestiges du Rêve",
-  "pinwheel-forest": "Forêt d'Empoigne",
-  "desert-resort": "Désert Délassant",
-  "relic-castle": "Château Enfoui",
-  "cold-storage": "Entrepôt Frigorifique",
-  "chargestone-cave": "Grotte Électrolithe",
-  "twist-mountain": "Mont Foré",
-  "dragonspiral-tower": "Tour Dragospire",
-  "giant-chasm": "Grotte Cyclopéenne",
-  "abundant-shrine": "Temple Abundancia",
-  "victory-road-unova": "Route Victoire",
-  "n-castle": "Château de N",
-
-  // Kalos (Gen 6)
-  "kalos-route": "Route",
-  "vaniville-town": "Bourg Croquis",
-  "aquacorde-town": "Quarellis",
-  "santalune-city": "Neuvartault",
-  "lumiose-city": "Illumis",
-  "camphrier-town": "Cromlac'h",
-  "cyllage-city": "Relifac-le-Haut",
-  "ambrette-town": "Roche-sur-Gliffe",
-  "geosenge-town": "Géosenge",
-  "shalour-city": "Yantreizh",
-  "coumarine-city": "Port Tempères",
-  "laverre-city": "Auffrac-les-Congères",
-  "dendemille-town": "Mozheim",
-  "anistar-city": "Flusselles",
-  "couriway-town": "Romant-sous-Bois",
-  "snowbelle-city": "Batisques",
-  "santalune-forest": "Forêt de Neuvartault",
-  "glittering-cave": "Grotte Miroitante",
-  "reflection-cave": "Grotte Miroir",
-  "frost-cavern": "Caverne Gelée",
-  "terminus-cave": "Grotte Coda",
-  "pokemon-village": "Village Pokémon",
-
-  // Alola (Gen 7)
-  "alola-route": "Route",
-  "iki-town": "Lili'i",
-  "hau-oli-city": "Ohana",
-  "heahea-city": "Ekaeka",
-  "paniola-town": "Paniola",
-  "konikoni-city": "Konikoni",
-  "malie-city": "Malié",
-  "seafolk-village": "Village Flottant",
-  "exeggutor-island": "Île Noadkoko",
-  "vast-poni-canyon": "Canyon de Poni",
-  "altar-of-the-sunne": "Autel du Soleil",
-  "altar-of-the-moone": "Autel de la Lune",
-  "mount-lanakila": "Mont Lanakila",
-  "verdant-cavern": "Grotte Verdoyante",
-  "melemele-meadow": "Jardin de Melemele",
-  "seaward-cave": "Grotte Marine",
-  "ten-carat-hill": "Colline Dicarat",
-  "hano-beach": "Plage Hano",
-  "lush-jungle": "Jungle Touffue",
-  "diglett-tunnel": "Tunnel Taupiqueur",
-  "memorial-hill": "Colline du Souvenir",
-  "malie-garden": "Jardin de Malié",
-  "mount-hokulani": "Mont Hokulani",
-  "blush-mountain": "Mont Rougeoie",
-  "ultra-space": "Ultra-Dimension",
-
-  // Galar (Gen 8)
-  "galar-route": "Route",
-  "postwick": "Paddoxton",
-  "wedgehurst": "Greenham",
-  "motostoke": "Motorby",
-  "turffield": "Kickenham",
-  "hulbury": "Brasswick",
-  "hammerlocke": "Hammourabi",
-  "stow-on-side": "Corrifey",
-  "ballonlea": "Ludster",
-  "circhester": "Ludester",
-  "spikemuth": "Stow-on-Side",
-  "wyndon": "Winscor",
-  "slumbering-weald": "Bois de Clairjour",
-  "galar-mine": "Mine de Galar",
-  "watchtower-ruins": "Ruines des Guetteurs",
-  "glimwood-tangle": "Forêt de Lumirinth",
-  "dusty-bowl": "Pleine Recouverte",
-  "giants-cap": "Mont du Gigamax",
-  "hammerlocke-hills": "Collines d'Hammourabi",
-  "lake-of-outrage": "Lac Ouragan",
-
-  // Paldea (Gen 9)
-  "paldea-route": "Route",
-  "poco-path": "Chemin Poco",
-  "mesagoza": "Mesagoza",
-  "cortondo": "Cortondo",
-  "artazon": "Artazon",
-  "levincia": "Levincia",
-  "cascarrafa": "Cascarrafa",
-  "porto-marinada": "Porto Marinada",
-  "alfornada": "Alfornada",
-  "medali": "Medali",
-  "zapapico": "Zapapico",
-  "los-platos": "Los Platos",
-  "montenevera": "Montenevera",
-  "area-zero": "Zone Zéro",
-  "inlet-grotto": "Grotte du Rivage",
-  "south-province": "Province Sud",
-  "west-province": "Province Ouest",
-  "east-province": "Province Est",
-  "north-province": "Province Nord",
-  "asado-desert": "Désert Asado",
-  "glaseado-mountain": "Mont Glaseado",
-
-  // Termes génériques
-  "area": "Zone",
-  "cave": "Grotte",
-  "cavern": "Caverne",
-  "city": "Ville",
-  "forest": "Forêt",
-  "grass": "Herbe",
-  "lake": "Lac",
-  "meadow": "Prairie",
-  "mountain": "Montagne",
-  "pond": "Étang",
-  "road": "Route",
-  "route": "Route",
-  "sea": "Mer",
-  "town": "Ville",
-  "tunnel": "Tunnel",
-  "village": "Village",
-
-  // Directions
-  "north": "Nord",
-  "south": "Sud",
-  "east": "Est",
-  "west": "Ouest",
-  "area": "Zone",
-};
-
-const specialLocations = {
-  "digletts-cave": "Grotte Taupiqueur",
-  "mt-moon": "Mont Sélénite",
-  "rock-tunnel": "Grotte",
-  "victory-road": "Route Victoire",
-  "cerulean-cave": "Grotte Azurée",
-  "seafoam-islands": "Îles Écumes",
-  "pokemon-tower": "Tour Pokémon",
-  "pokemon-mansion": "Manoir Pokémon",
-  "union-cave": "Caves Jumelles",
-  "slowpoke-well": "Puits Ramoloss",
-  "ilex-forest": "Bois aux Chênes",
-  "mt-mortar": "Mont Creuset",
-  "ice-path": "Route de Glace",
-  "dark-cave": "Antre Noir",
-  "dragons-den": "Antre du Dragon",
-  "meteor-falls": "Site Météore",
-  "shoal-cave": "Grotte Tréfonds",
-  "mt-pyre": "Mont Mémoria",
-  "sky-pillar": "Pilier Céleste",
-  "sealed-chamber": "Chambre Scellée",
-  "crystal-cave": "Grotte de Cristal",
-  "mt-coronet": "Mont Couronné",
-  "great-marsh": "Grand Marais",
-  "oreburgh-gate": "Porte Charbourg",
-  "iron-island": "Île de Fer",
-  "stark-mountain": "Mont Abrupt",
-  "turnback-cave": "Grotte Retour",
-  "spear-pillar": "Pilier Lancé",
-  "spring-path": "Chemin Printanier",
-  "chargestone-cave": "Grotte Électrolithe",
-  "dragonspiral-tower": "Tour Dragospire",
-  "relic-castle": "Château Enfoui",
-  "giant-chasm": "Grotte Cyclopéenne",
-  "abundant-shrine": "Temple Abundancia",
-  "glittering-cave": "Grotte Miroitante",
-  "reflection-cave": "Grotte Miroir",
-  "frost-cavern": "Caverne Gelée",
-  "terminus-cave": "Grotte Coda",
-  "verdant-cavern": "Grotte Verdoyante",
-  "diglett-tunnel": "Tunnel Taupiqueur",
-  "lush-jungle": "Jungle Touffue",
-  "mount-hokulani": "Mont Hokulani",
-  "mount-lanakila": "Mont Lanakila",
-};
-
-const translateLocation = (englishName) => {
-  // Normaliser complètement le nom d'entrée
-  const normalizedName = englishName
-    .toLowerCase()
-    .replace(/\s+/g, '-')        // Remplacer les espaces par des tirets
-    .replace(/'s/g, 's')         // Normaliser les possessifs
-    .replace(/['']/g, '')        // Enlever les apostrophes
-    .replace(/--+/g, '-')        // Éviter les tirets multiples
-    .replace(/\bdigletts?\b/gi, 'diglett') // Normaliser les variations de Diglett
-    .replace(/\bcave\b/gi, 'cave')         // Normaliser "cave" et ses variations
-    .replace(/\barea\b/gi, '')             // Supprimer "area"
-    .replace(/\bzone\b/gi, '')             // Supprimer "zone"
-    .trim()
-    .replace(/-+$/g, '');        // Enlever les tirets à la fin
-
-  // Console.log pour le debugging
-  //console.log('Original:', englishName);
-  //console.log('Normalized:', normalizedName);
-
-  // Vérifier les cas spéciaux avec le nom normalisé
-  if (normalizedName.includes('diglett') && normalizedName.includes('cave')) {
-    return "Grotte Taupiqueur";
-  }
-
-  // Vérifier les autres cas spéciaux
-  if (specialLocations[normalizedName]) {
-    return specialLocations[normalizedName];
-  }
-
-  // Le reste de la logique de traduction...
-  const parts = normalizedName.split('-')
-    .filter(part => part && !['area', 'zone', 'section'].includes(part));
-
-  // Traduction spéciale pour les routes
-  if (parts.includes('route')) {
-    const number = parts.find(part => part.match(/^\d+$/));
-    if (number) {
-      return `Route ${number}`;
-    }
-  }
-
-  const translatedParts = parts.map(part => locationTranslations[part] || part);
-
-  let translatedName = translatedParts
-    .join(' ')
-    .trim()
-    .replace(/\s+/g, ' ');
-
-  // Première lettre en majuscule
-  translatedName = translatedName.charAt(0).toUpperCase() + translatedName.slice(1);
-
-  return translatedName;
-};
 const POKEDEXES = {
   'red-blue': { 
     id: 2,
@@ -672,57 +313,75 @@ const fetchPokemonLocations = async (pokemonId, gameVersion) => {
       return ["Non disponible à l'état sauvage"];
     }
 
-    const gameLocations = locations.filter(loc => 
-      loc.version_details.some(detail => 
+    // Tableau pour stocker les promesses de récupération des noms français
+    const locationPromises = locations
+      .filter(loc => loc.version_details.some(detail => 
         apiVersionNames.includes(detail.version.name)
-      )
-    );
+      ))
+      .map(async (loc) => {
+        try {
+          // Récupérer les détails de la location pour avoir le nom français
+          const locationResponse = await fetch(loc.location_area.url);
+          const locationData = await locationResponse.json();
 
-    if (gameLocations.length === 0) {
+          // Récupérer les détails de la location parente
+          const parentLocationResponse = await fetch(locationData.location.url);
+          const parentLocationData = await parentLocationResponse.json();
+
+          // Trouver le nom français dans les noms de la location parente
+          const frenchName = parentLocationData.names.find(
+            name => name.language.name === 'fr'
+          )?.name || locationData.name;
+
+          const versionDetail = loc.version_details.find(detail => 
+            apiVersionNames.includes(detail.version.name)
+          );
+          
+          let minLevel = null;
+          let maxLevel = null;
+          let chance = null;
+
+          if (versionDetail?.encounter_details?.length > 0) {
+            const levels = versionDetail.encounter_details.map(e => e.min_level);
+            const maxLevels = versionDetail.encounter_details.map(e => e.max_level || e.min_level);
+            minLevel = Math.min(...levels);
+            maxLevel = Math.max(...maxLevels);
+            chance = versionDetail.max_chance;
+          }
+
+          return {
+            name: frenchName,
+            levels: minLevel !== null && maxLevel !== null 
+              ? minLevel === maxLevel 
+                ? `Nv. ${minLevel}`
+                : `Nv. ${minLevel}-${maxLevel}`
+              : null,
+            chance: chance ? `${chance}%` : null
+          };
+        } catch (error) {
+          console.error('Error fetching location details:', error);
+          return null;
+        }
+      });
+
+    // Attendre toutes les promesses
+    const resolvedLocations = (await Promise.all(locationPromises))
+      .filter(loc => loc !== null);
+
+    if (resolvedLocations.length === 0) {
       return ["Non disponible dans cette version"];
     }
 
-    const uniqueLocations = [...new Set(gameLocations.map(loc => {
-      const locationName = loc.location_area.name;
-      const translatedName = translateLocation(locationName);
-      
-      const versionDetail = loc.version_details.find(detail => 
-        apiVersionNames.includes(detail.version.name)
-      );
-      
-      let minLevel = null;
-      let maxLevel = null;
-      let chance = null;
-
-      if (versionDetail?.encounter_details?.length > 0) {
-        const levels = versionDetail.encounter_details.map(e => e.min_level);
-        const maxLevels = versionDetail.encounter_details.map(e => e.max_level || e.min_level);
-        minLevel = Math.min(...levels);
-        maxLevel = Math.max(...maxLevels);
-        chance = versionDetail.max_chance;
-      }
-
-      return {
-        name: translatedName,
-        levels: minLevel !== null && maxLevel !== null 
-          ? minLevel === maxLevel 
-            ? `Nv. ${minLevel}`
-            : `Nv. ${minLevel}-${maxLevel}`
-          : null,
-        chance: chance ? `${chance}%` : null
-      };
+    // Créer un Set pour éliminer les doublons et formater le résultat
+    const uniqueLocations = [...new Set(resolvedLocations.map(loc => {
+      const parts = [];
+      parts.push(loc.name);
+      if (loc.levels) parts.push(`(${loc.levels})`);
+      if (loc.chance) parts.push(`- ${loc.chance}`);
+      return parts.join(' ');
     }))];
 
-    // Trier et formater les locations
-    return uniqueLocations
-      .sort((a, b) => a.name.localeCompare(b.name))
-      .map(loc => {
-        const parts = [];
-        parts.push(loc.name);
-        if (loc.levels) parts.push(`(${loc.levels})`);
-        if (loc.chance) parts.push(`- ${loc.chance}`);
-        return parts.join(' ');
-      });
+    return uniqueLocations.sort();
 
   } catch (error) {
     console.error('Error fetching location areas:', error);
