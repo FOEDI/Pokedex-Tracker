@@ -201,7 +201,7 @@ const POKEDEXES = {
     region: "Kalos",
     version: "X/Y",
     generation: 6,
-    totalPokemon: 454
+    totalPokemon: 150
   },
   'omega-ruby-alpha-sapphire': { 
     id: 15,
