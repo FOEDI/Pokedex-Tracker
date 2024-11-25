@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Search, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import pokemonService from "@/services/pokemonService";
+import pokemonService, { POKEDEXES } from "@/services/pokemonService";
 import {
   Select,
   SelectContent,
@@ -229,7 +229,8 @@ const App = () => {
     setLoadingLocations(true);
     try {
       const locationData = await pokemonService.fetchPokemonLocations(
-        pokemon.id
+        pokemon.id,
+        POKEDEXES[currentPokedex].version
       );
       setLocations(locationData);
     } catch (error) {
@@ -414,7 +415,7 @@ const App = () => {
                   <AlertDialogDescription className="text-base">
                     Êtes-vous sûr de vouloir réinitialiser votre progression pour{" "}
                     <span className="font-medium text-foreground">
-                    {pokemonService.POKEDEXES[currentPokedex].name}
+                    {POKEDEXES[currentPokedex].name}
                     </span>
                     {" "}? Cette action est irréversible.
                     <div className="mt-4 p-4 bg-muted rounded-lg">

@@ -1,5 +1,26 @@
 const BASE_URL = 'https://pokeapi.co/api/v2';
 
+const versionMapping = {
+  'Rouge/Bleu': ['red', 'blue'],
+  'Jaune': ['yellow'],
+  'Or/Argent': ['gold', 'silver'],
+  'Cristal': ['crystal'],
+  'Rubis/Saphir': ['ruby', 'sapphire'],
+  'Émeraude': ['emerald'],
+  'Rouge Feu/Vert Feuille': ['firered', 'leafgreen'],
+  'Diamant/Perle': ['diamond', 'pearl'],
+  'Platine': ['platinum'],
+  'HeartGold/SoulSilver': ['heartgold', 'soulsilver'],
+  'Noir/Blanc': ['black', 'white'],
+  'Noir 2/Blanc 2': ['black-2', 'white-2'],
+  'X/Y': ['x', 'y'],
+  'Rubis Oméga/Saphir Alpha': ['omega-ruby', 'alpha-sapphire'],
+  'Soleil/Lune': ['sun', 'moon'],
+  'Ultra-Soleil/Ultra-Lune': ['ultra-sun', 'ultra-moon'],
+  'Épée/Bouclier': ['sword', 'shield'],
+  'Écarlate/Violet': ['scarlet', 'violet']
+};
+
 const getTypeTranslation = (englishType) => {
   const types = {
     normal: "Normal",
@@ -356,8 +377,9 @@ const fetchPokemonDetails = async (id, version) => {
   }
 };
 
-const fetchPokemonLocations = async (pokemonId) => {
+const fetchPokemonLocations = async (pokemonId, gameVersion) => {
   try {
+    const apiVersionNames = versionMapping[gameVersion] || [];
     const response = await fetch(`${BASE_URL}/pokemon/${pokemonId}/encounters`);
     const locations = await response.json();
     
@@ -365,18 +387,58 @@ const fetchPokemonLocations = async (pokemonId) => {
       return ["Non disponible à l'état sauvage"];
     }
 
-    const uniqueLocations = [...new Set(locations.map(loc => {
+    const gameLocations = locations.filter(loc => 
+      loc.version_details.some(detail => 
+        apiVersionNames.includes(detail.version.name)
+      )
+    );
+
+    if (gameLocations.length === 0) {
+      return ["Non disponible dans cette version"];
+    }
+
+    const uniqueLocations = [...new Set(gameLocations.map(loc => {
       const locationName = loc.location_area.name;
-      return translateLocation(locationName);
+      const translatedName = translateLocation(locationName);
+      
+      const versionDetail = loc.version_details.find(detail => 
+        apiVersionNames.includes(detail.version.name)
+      );
+      
+      let minLevel = null;
+      let maxLevel = null;
+      let chance = null;
+
+      if (versionDetail?.encounter_details?.length > 0) {
+        const levels = versionDetail.encounter_details.map(e => e.min_level);
+        minLevel = Math.min(...levels);
+        maxLevel = Math.max(...levels);
+        chance = versionDetail.max_chance;
+      }
+
+      return {
+        name: translatedName,
+        levels: minLevel !== null && maxLevel !== null ? `Nv. ${minLevel}-${maxLevel}` : null,
+        chance: chance ? `${chance}%` : null
+      };
     }))];
 
-    return uniqueLocations.sort();
+    return uniqueLocations
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .map(loc => {
+        let text = loc.name;
+        if (loc.levels) text += ` (${loc.levels})`;
+        if (loc.chance) text += ` - ${loc.chance}`;
+        return text;
+      });
 
   } catch (error) {
     console.error('Error fetching location areas:', error);
     return ["Informations non disponibles"];
   }
 };
+
+export { POKEDEXES, versionMapping };
 
 export default {
   fetchPokedexEntries: fetchVersionPokedex,
